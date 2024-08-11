@@ -7,11 +7,14 @@ const { PORT } = require('./config/serverConfig')
 
 
 const app = express();
-app.use(bodyParser.json());
 
-const serverSetup = () => {
+const serverSetup = async() => {
 
-    app.listen(process.env.PORT,() => {
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true}));
+    app.listen(process.env.PORT, async () => {
         console.log(`Server is Listening @ http://localhost:${PORT}`)
     })
-}
+};
+
+serverSetup();
